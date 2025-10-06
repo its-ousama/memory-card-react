@@ -19,7 +19,7 @@ const CardComp = ({ clickProp, card }: TCardProps) => {
 				backgroundImage: card.flipped || card.matched ? `url(./imgs/${card.image})` : 'none'
 			}}
 		>
-			<span>{card.flipped || card.matched ? "" : "?"}</span>
+			{!card.flipped && !card.matched && <span>?</span>}
 		</article>
 	)
 }

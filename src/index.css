@@ -1,42 +1,140 @@
-@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 :root {
-  --primary: #27888e;
-  --secondary: #ef516f;
-  --primary-alt: #1b6064;
-  --contrast: #ededed;
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #ec4899;
+  --secondary-dark: #db2777;
+  --background: #0f172a;
+  --card-back: #1e293b;
+  --card-front: #334155;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --success: #10b981;
+  --shadow: rgba(99, 102, 241, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  height: 100%;
-  width: 100%;
-  font-family: "Anek Latin", sans-serif;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 8px;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: var(--text);
+  padding: 2rem 1rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated background pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 h1 {
-  margin-top: 0;
-  margin-bottom: 0.125em;
   text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.5));
+  }
+  to {
+    filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.5));
+  }
 }
 
 .main_section {
   position: relative;
-  max-width: 566px;
+  max-width: 700px;
   margin: auto;
+  z-index: 1;
+}
+
+.main_section > p {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: var(--text-muted);
+  background: var(--card-back);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  display: inline-block;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.main_section > p::before {
+  content: "🎮 ";
+  margin-right: 0.5rem;
 }
 
 .card_container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  max-width: 600px;
+  gap: 1.25rem;
+  max-width: 700px;
   margin: 0 auto;
+  padding: 1rem;
+  perspective: 1000px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .card_container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 0.5rem;
+  }
+  
+  .main_section > p {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .card_container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
 }
